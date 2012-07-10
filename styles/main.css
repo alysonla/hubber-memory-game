@@ -1,0 +1,23 @@
+body {
+	background: #aaa;
+}
+.card {
+	width: 80px;
+	height: 120px;
+	margin: 20px;
+	background: #efefef;
+	position: absolute;
+	-webkit-transition: all 1s linear;
+}
+.cardAK {
+	background: url(../images/AK.png);
+}
+.cardAQ {
+	background: url(../images/AQ.png);
+}
+.rotateRight {
+	-webkit-transform: rotate3d(0,0,1,90deg);
+}
+.moveAndScale {
+	-webkit-transform: translate3d(150px,150px,0) scale3d(1.5, 1.5, 1);
+}

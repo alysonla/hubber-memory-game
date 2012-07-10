@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Memory Matching Game</title>
+		<link rel="stylesheet" href="styles/main.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Memory Matching Game</h1>
+		</header>
+		<section id="game">
+			<div id="cards">
+				<div id="card1" class="card cardAK"></div>
+				<div id="card2" class="card cardAQ"></div>
+			</div>
+		</section>
+		<footer>
+			<p>This is an example of transitioning cards.</p>
+		</footer>
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script>
+		$(function(){
+			$("#card1").addClass("moveAndScale");
+			$("#card2").addClass("rotateRight");
+		});
+		</script>
+	</body>
+</html>
