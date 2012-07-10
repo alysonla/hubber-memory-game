@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Memory Matching Game</title>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet'>
 		<link rel="stylesheet" href="styles/main.css" />
 	</head>
 	<body>
@@ -11,19 +12,17 @@
 		</header>
 		<section id="game">
 			<div id="cards">
-				<div id="card1" class="card cardAK"></div>
-				<div id="card2" class="card cardAQ"></div>
+				<div class="card">
+					<div class="face front"></div>
+					<div class="face back"></div>
+				</div>
 			</div>
 		</section>
 		<footer>
-			<p>This is an example of transitioning cards.</p>
+			<p>Number of attempts: <span id="attempts">0</span></p>
 		</footer>
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-		<script>
-		$(function(){
-			$("#card1").addClass("moveAndScale");
-			$("#card2").addClass("rotateRight");
-		});
+		<script src="js/memory-matching.js"></script>
 		</script>
 	</body>
 </html>
