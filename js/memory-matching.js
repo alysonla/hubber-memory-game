@@ -1,5 +1,5 @@
 var matchingGame = {
-	attempts: 0
+	elapsedTime: 0
 };
 
 matchingGame.deck = [
@@ -34,8 +34,6 @@ function checkPattern() {
 	} else {
 		$(".card-flipped").removeClass("card-flipped");
 	}
-	matchingGame.attempts++;
-	$('#attempts').html(matchingGame.attempts);
 }
 
 function isMatchPattern() {
@@ -47,6 +45,60 @@ function isMatchPattern() {
 
 function removeTookCards() {
 	$(".card-removed").remove();
+	if ($(".card").length == 0) {
+		gameover();
+	}
+}
+
+function gameover() {
+	clearInterval(matchingGame.timer);
+	$(".score").html($("#elapsed-time").html());
+	
+	var lastScore = localStorage.getItem("last-score");
+	lastScoreObj = JSON.parse(lastScore);
+	if (lastScoreObj == null) {
+		lastScoreObj = {"savedTime": "no record", "score": 0};
+	}
+	var lastElapsedTime = lastScoreObj.score;
+	var minute = Math.floor(lastElapsedTime / 60);
+	var second = lastElapsedTime % 60;
+	if (minute < 10) minute = "0" + minute;
+	if (second < 10) second = "0" + second;
+	$(".last-score").html(minute+":"+second);
+	var savedTime = lastScoreObj.savedTime;
+	$(".saved-time").html(savedTime);
+	
+	var currentTime = new Date();
+	var month = currentTime.getMonth() + 1;
+	var day = currentTime.getDate();
+	var year = currentTime.getFullYear();
+	var hours = currentTime.getHours();
+	var minutes = currentTime.getMinutes();
+	if (minutes < 10) minutes = "0" + minutes;
+	var seconds = currentTime.getSeconds();
+	if (seconds < 10) seconds = "0" + seconds;
+	var now = day+"/"+month+"/"+year+" "+hours+":"+minutes+":"+seconds;
+	var obj = {
+		"savedTime": now,
+		"score": matchingGame.elapsedTime
+	};
+	localStorage.setItem("last-score", JSON.stringify(obj));
+	
+	if (lastElapsedTime == 0 || matchingGame.elapsedTime < lastElapsedTime) {
+		$(".ribbon").removeClass("hide");
+	}
+	
+	$("#popup").removeClass("hide");
+}
+
+function countTimer() {
+	matchingGame.elapsedTime++;
+	var minute = Math.floor(matchingGame.elapsedTime / 60);
+	var second = matchingGame.elapsedTime % 60;
+	
+	if (minute < 10) minute = "0" + minute;
+	if (second < 10) second = "0" + second;
+	$("#elapsed-time").html(minute+":"+second);
 }
 
 $(function(){
@@ -63,5 +115,6 @@ $(function(){
 		$(this).find(".back").addClass(pattern);
 		$(this).attr("data-pattern",pattern);
 		$(this).click(selectCard);
-	});	
+	});
+	matchingGame.timer = setInterval(countTimer, 1000);
 });

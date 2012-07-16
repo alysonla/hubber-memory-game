@@ -4,12 +4,16 @@
 		<meta charset="utf-8">
 		<title>Memory Matching Game</title>
 		<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet'>
+		<link href="http://fonts.googleapis.com/css?family=Orbitron:400,700" rel="stylesheet" type="text/css" >
 		<link rel="stylesheet" href="styles/main.css" />
 	</head>
 	<body>
 		<header>
 			<h1>Memory Matching Game</h1>
 		</header>
+		<div id="timer">
+			Elapsed time: <span id="elapsed-time">00:00</span>
+		</div>
 		<section id="game">
 			<div id="cards">
 				<div class="card">
@@ -18,9 +22,28 @@
 				</div>
 			</div>
 		</section>
-		<footer>
-			<p>Number of attempts: <span id="attempts">0</span></p>
-		</footer>
+		<section id="popup" class="hide">
+			<div id="popup-bg"></div>
+			<div id="popup-box">
+				<div class="ribbon hide">
+					<div class="ribbon-body">
+						<span>New Record</span>
+					</div>
+					<div class="triangle"></div>
+				</div>
+				<div id="popup-box-content">
+					<h1>You Won!</h1>
+					<p>Your Score:</p>
+					<p><span class='score'>13</span></p>
+					<p>
+						<small>
+							Last Score: <span class='last-score'>20</span><br>
+							Saved on: <span class='saved-time'>13/4/2011 15:15:15</span>
+						</small>
+					</p>
+				</div>
+			</div>
+		</section>
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 		<script src="js/memory-matching.js"></script>
 		</script>
