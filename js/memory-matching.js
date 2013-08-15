@@ -3,14 +3,15 @@ var matchingGame = {
 };
 
 matchingGame.deck = [
-	'cardAK', 'cardAK',
-	'cardAQ', 'cardAQ',
-	'cardBK', 'cardBK',
-	'cardBQ', 'cardBQ',
-	'cardCK', 'cardCK',
-	'cardCQ', 'cardCQ',
-	'cardDK', 'cardDK',
-	'cardDQ', 'cardDQ',
+	'mojombo', 'mojombo',
+	'defunkt', 'defunkt',
+	'pjhyett', 'pjhyett',
+	'schacon', 'schacon',
+	'tekkub', 'tekkub',
+	'luckiestmonkey', 'luckiestmonkey', 
+	'kneath', 'kneath',
+	'rtomayko', 'rtomayko',
+
 ];
 
 function shuffle() {
@@ -108,8 +109,8 @@ $(function(){
 	}
 	$('#cards').children().each(function(index) {
 		$(this).css({
-			'left': ($(this).width() + 20) * (index % 4),
-			'top': ($(this).height() + 20) * Math.floor(index / 4)
+			'left': ($(this).width() + 15) * (index % 4),
+			'top': ($(this).height() + 15) * Math.floor(index / 4)
 		});
 		var pattern = matchingGame.deck.pop();
 		$(this).find(".back").addClass(pattern);

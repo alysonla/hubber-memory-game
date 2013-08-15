@@ -1,7 +1,7 @@
 body {
 	text-align: center;	
 	font-family: 'Droid Serif', arial, serif;
-	background: #a46740 url(../images/bg.jpg);
+	background: #a46740 url(../images/table.jpg);
 	color: #ccc;
 	text-shadow: 0 1px 0 #222;
 }
@@ -11,7 +11,7 @@ h1 {
 }
 a, a:visited {
 	color: #aea;
-	text-decoration: none;	
+	text-decoration: none;	22
 	-webkit-transition: all .3s;
 	padding: 5px;
 }
@@ -22,15 +22,7 @@ a:hover {
 }
  
 #game {
-	border-radius: 10px;
-	border: 1px solid #666;
-	-webkit-box-shadow: 0 -1px 0 #999, 0 1px 0 #999, inset 0 1px 6px #000;
-	
-	position: relative;
 	background: #232 url(../images/table.jpg);
-	width: 500px;
-	height: 460px;
-	margin: 0 auto;
 	
 	display: -webkit-box;
 	-webkit-box-pack: center;
@@ -42,15 +34,16 @@ a:hover {
 }
 
 #cards {
+	margin-top: 15px;
 	position: relative;	
-	width: 380px;
-	height: 400px;
+	width: 557px;
+	height: 557px;
 }
 
 .card {
 	-webkit-perspective: 600;
-	width: 80px;
-	height: 120px;
+	width: 128px;
+	height: 128px;
 	
 	/* changed	*/
 	position: absolute;
@@ -79,8 +72,8 @@ a:hover {
 	
 }
 
-.front {	
-	background: #999 url(../images/deck.png) 0 -480px;
+.front {
+	background: #FFF url(../images/mark.png) no-repeat;
 	z-index: 10;
 }
 
@@ -131,20 +124,16 @@ a:hover {
 /* cardAK stands for Spade K */
 /* cardB_ stands for Heart _ */
 /* cardC_ stands for Club _ */
-/* cardD_ stands for Diamond _ */
+/* cardD_ stands for Diamond also cardD has been temporarily deleted_ */
 
-.cardAJ {background-position: -800px 0;}
-.cardAQ {background-position: -880px 0;}
-.cardAK {background-position: -960px 0;}
-.cardBJ {background-position: -800px -120px;}
-.cardBQ {background-position: -880px -120px;}
-.cardBK {background-position: -960px -120px;}
-.cardCJ {background-position: -800px -240px;}
-.cardCQ {background-position: -880px -240px;}
-.cardCK {background-position: -960px -240px;}
-.cardDJ {background-position: -800px -360px;}
-.cardDQ {background-position: -880px -360px;}
-.cardDK {background-position: -960px -360px;}
+.mojombo {background-position: 0px 0px;}
+.defunkt {background-position: 128px 0px;}
+.pjhyett {background-position: 256px 0px;}
+.schacon {background-position: 384px 0px;}
+.tekkub {background-position: 512px 0px;}
+.luckiestmonkey {background-position: -0px -128px;}
+.kneath {background-position: -128px -128px;}
+.rtomayko {background-position: -256px -128px;}
 
 #popup {
 	font-family: 'Orbitron', serif;
