@@ -1,18 +1,28 @@
+// https://team-staging.githubapp.com/api/hubbers
+
+// function hubbersHaveArrived () {
+//   console.log(this.responseText);
+// };
+
+// var gimmeSomeHubbers = new XMLHttpRequest();
+// gimmeSomeHubbers.onload = hubbersHaveArrived;
+// gimmeSomeHubbers.open("get", "Hubber.json", true);
+// gimmeSomeHubbers.send();
+
 var matchingGame = {
 	elapsedTime: 0
 };
 
-matchingGame.deck = [
-	'mojombo', 'mojombo',
-	'defunkt', 'defunkt',
-	'pjhyett', 'pjhyett',
-	'schacon', 'schacon',
-	'tekkub', 'tekkub',
-	'luckiestmonkey', 'luckiestmonkey', 
-	'kneath', 'kneath',
-	'rtomayko', 'rtomayko',
+matchingGame.deck = []
 
-];
+// Like this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+
+Hubbers["hubbers"].sort(shuffle).slice(0,8).map(function(hubber){
+	matchingGame.deck.push(hubber)
+	matchingGame.deck.push(hubber)
+});
+
+console.log(matchingGame.deck)
 
 function shuffle() {
 	return 0.5 - Math.random();
@@ -102,6 +112,9 @@ function countTimer() {
 	$("#elapsed-time").html(minute+":"+second);
 }
 
+// This function is going to auto-update the website with new hubbers per the team api (when we get crosssite request working).
+// Also is this all JQuery, I know this b/c of the $ 
+
 $(function(){
 	matchingGame.deck.sort(shuffle);
 	for(var i=0;i<15;i++){
@@ -112,9 +125,20 @@ $(function(){
 			'left': ($(this).width() + 15) * (index % 4),
 			'top': ($(this).height() + 15) * Math.floor(index / 4)
 		});
-		var pattern = matchingGame.deck.pop();
-		$(this).find(".back").addClass(pattern);
-		$(this).attr("data-pattern",pattern);
+
+		var Hubber = matchingGame.deck.pop();
+		// This is some shit - we are going to dynamicly apply css to the card(s). 
+		$(this)
+			.css("background", "#efefef url(" + Hubber.gravatar + ")")
+			.css("background-size", "128px 128px")
+		$(this).attr("data-pattern",Hubber.login);
+		
+		if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
+			$(this).find(".name").text(Hubber.name);
+		} else {
+			$(this).find(".login").text(Hubber.login);
+		}
+
 		$(this).click(selectCard);
 	});
 	matchingGame.timer = setInterval(countTimer, 1000);

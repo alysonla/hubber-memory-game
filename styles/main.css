@@ -78,13 +78,22 @@ a:hover {
 }
 
 .back {
-	background: #efefef url(../images/deck.png);
 	
+
 	-moz-transform: rotate3d(0,1,0,-180deg);
 	-webkit-transform: rotate3d(0,1,0,-180deg);
 	transform: rotate3d(0,1,0,-180deg);
 	
 	z-index: 8;
+}
+
+.back .name, .back .login {
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	right: 0;
+	display: block;
+	color: #FFF;
 }
 
 .card:hover .face{
@@ -116,24 +125,6 @@ a:hover {
 .card-removed {
 	opacity: 0;
 }
-
-
-/* define the face graphics of the card deck*/
-/* cardAA stands for Spade A */
-/* cardA10 stands for Spade 10 */
-/* cardAK stands for Spade K */
-/* cardB_ stands for Heart _ */
-/* cardC_ stands for Club _ */
-/* cardD_ stands for Diamond also cardD has been temporarily deleted_ */
-
-.mojombo {background-position: 0px 0px;}
-.defunkt {background-position: 128px 0px;}
-.pjhyett {background-position: 256px 0px;}
-.schacon {background-position: 384px 0px;}
-.tekkub {background-position: 512px 0px;}
-.luckiestmonkey {background-position: -0px -128px;}
-.kneath {background-position: -128px -128px;}
-.rtomayko {background-position: -256px -128px;}
 
 #popup {
 	font-family: 'Orbitron', serif;
