@@ -127,7 +127,7 @@ $(function(){
 		});
 
 		var Hubber = matchingGame.deck.pop();
-		// This is some shit - we are going to dynamicly apply css to the card(s). 
+		// This is some shit - we are going to dynamically apply css to the card(s). 
 		$(this)
 			.css("background", "#efefef url(" + Hubber.gravatar + ")")
 			.css("background-size", "128px 128px")
@@ -143,3 +143,16 @@ $(function(){
 	});
 	matchingGame.timer = setInterval(countTimer, 1000);
 });
+
+//If built as part of team something like this should work to get the list of hubbers to power the game
+
+// hubbers = []
+ 
+// function hubbersLoaded () {
+//   hubbers = JSON.parse(this.responseText)  
+// };
+ 
+// var request = new XMLHttpRequest();
+// request.onload = hubbersLoaded;
+// request.open("get", "https://team.githubapp.com/api/hubbers", true);
+// request.send();
