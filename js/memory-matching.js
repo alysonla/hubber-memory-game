@@ -34,7 +34,7 @@ function selectCard() {
 	}
 	$(this).addClass("card-flipped");
 	if ($(".card-flipped").size() == 2) {
-		setTimeout(checkPattern,700);
+		setTimeout(checkPattern,1400);
 	}
 }
 
