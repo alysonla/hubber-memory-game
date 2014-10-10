@@ -55,7 +55,7 @@ function removeTookCards() {
 function gameover() {
 	clearInterval(matchingGame.timer);
 	$(".score").html($("#elapsed-time").html());
-	
+
 	var lastScore = localStorage.getItem("last-score");
 	lastScoreObj = JSON.parse(lastScore);
 	if (lastScoreObj == null) {
@@ -69,7 +69,7 @@ function gameover() {
 	$(".last-score").html(minute+":"+second);
 	var savedTime = lastScoreObj.savedTime;
 	$(".saved-time").html(savedTime);
-	
+
 	var currentTime = new Date();
 	var month = currentTime.getMonth() + 1;
 	var day = currentTime.getDate();
@@ -85,11 +85,11 @@ function gameover() {
 		"score": matchingGame.elapsedTime
 	};
 	localStorage.setItem("last-score", JSON.stringify(obj));
-	
+
 	if (lastElapsedTime == 0 || matchingGame.elapsedTime < lastElapsedTime) {
 		$(".ribbon").removeClass("hide");
 	}
-	
+
 	$("#popup").removeClass("hide");
 }
 
@@ -97,14 +97,14 @@ function countTimer() {
 	matchingGame.elapsedTime++;
 	var minute = Math.floor(matchingGame.elapsedTime / 60);
 	var second = matchingGame.elapsedTime % 60;
-	
+
 	if (minute < 10) minute = "0" + minute;
 	if (second < 10) second = "0" + second;
 	$("#elapsed-time").html(minute+":"+second);
 }
 
 // This function is going to auto-update the website with new hubbers per the team api (when we get crosssite request working).
-// Also is this all JQuery, I know this b/c of the $ 
+// Also is this all JQuery, I know this b/c of the $
 
 $(function(){
 	matchingGame.deck.sort(shuffle);
@@ -118,12 +118,12 @@ $(function(){
 		});
 
 		var Hubber = matchingGame.deck.pop();
-		// This is some shit - we are going to dynamically apply css to the card(s). 
+		// This is some shit - we are going to dynamically apply css to the card(s).
 		$(this)
-			.css("background", "#efefef url(" + Hubber.gravatar + ")")
+			.css("background", "#efefef url(" + Hubber.avatar + ")")
 			.css("background-size", "128px 128px")
 		$(this).attr("data-pattern",Hubber.login);
-		
+
 		if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
 			$(this).find(".name").text(Hubber.name);
 		} else {
