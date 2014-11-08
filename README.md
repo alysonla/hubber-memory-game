@@ -19,5 +19,4 @@ Hosted using [GitHub Pages.](https://pages.github.com/)
 
 ## TODO
 
-- [ ] Update json with current employee list
-- [ ] Figure out how to use the GitHub API to automatically pull in GitHub staff members
+- [ ] Figure out how to use the GitHub API to automatically pull in new GitHub staff members
