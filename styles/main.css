@@ -1,5 +1,5 @@
 body {
-	text-align: center;	
+	text-align: center;
 	font-family: 'Sansita One';
 	background: #a46740 url(../images/table.jpg);
 	color: #ccc;
@@ -20,22 +20,20 @@ a:hover {
 	background: #aea;
 	text-shadow: none;
 }
- 
+
 #game {
-	background: #232 url(../images/table.jpg);
-	
-	display: -webkit-box;
+		display: -webkit-box;
 	-webkit-box-pack: center;
 	-webkit-box-align: center;
-	
+
 	display: -moz-box;
 	-moz-box-pack: center;
-	-moz-box-align: center;	
+	-moz-box-align: center;
 }
 
 #cards {
 	margin-top: 15px;
-	position: relative;	
+	position: relative;
 	width: 557px;
 	height: 557px;
 }
@@ -44,10 +42,10 @@ a:hover {
 	-webkit-perspective: 600;
 	width: 128px;
 	height: 128px;
-	
+
 	/* changed	*/
 	position: absolute;
-	
+
 	-moz-transition: all .3s;
 	-webkit-transition: all .3s;
 	transition: all .3s;
@@ -58,18 +56,18 @@ a:hover {
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	
+
 	-moz-transition-property: opacity, -moz-transform, -moz-box-shadow;
 	-moz-transition-duration: .3s;
 	-webkit-transition-property: opacity, -webkit-transform, -webkit-box-shadow;
 	-webkit-transition-duration: .3s;
 	transition-property: opacity, transform, box-shadow;
 	transition-duration: .3s;
-	
+
 	-moz-backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-	
+
 }
 
 .front {
@@ -78,12 +76,12 @@ a:hover {
 }
 
 .back {
-	
+
 
 	-moz-transform: rotate3d(0,1,0,-180deg);
 	-webkit-transform: rotate3d(0,1,0,-180deg);
 	transform: rotate3d(0,1,0,-180deg);
-	
+
 	z-index: 8;
 }
 
@@ -102,23 +100,23 @@ a:hover {
 }
 .card-flipped .face{
 	-webkit-box-shadow: 0 0 20px #aaa;
-	box-shadow: 0 0 10px #aaa;		
+	box-shadow: 0 0 10px #aaa;
 }
 .card-flipped .front {
 	-moz-transform: rotate3d(0,1,0,180deg);
 	-webkit-transform: rotate3d(0,1,0,180deg);
 	transform: rotate3d(0,1,0,180deg);
-	
+
 	/* ensure the front face is below the back face */
 	z-index: 8;
 }
-	
+
 .card-flipped .back {
 	-moz-transform: rotate3d(0,1,0,0deg);
 	-webkit-transform: rotate3d(0,1,0,0deg);
 	transform: rotate3d(0,1,0,0deg);
-	
-	/* ensure the back face is on top of the front face */		
+
+	/* ensure the back face is on top of the front face */
 	z-index: 10;
 }
 
@@ -129,10 +127,10 @@ a:hover {
 #popup {
 	font-family: 'Orbitron', serif;
 	font-size: 28px;
-	font-weight: 700;	  
-	text-shadow: 0px 1px 2px #fff;	
+	font-weight: 700;
+	text-shadow: 0px 1px 2px #fff;
 	color: #222;
-	position: absolute;	  
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -140,7 +138,7 @@ a:hover {
 	background: rgba(0,0,0,.5);
 	display: -webkit-box;
 	-webkit-box-pack: center;
-	-webkit-box-align: center;			
+	-webkit-box-align: center;
 	-webkit-transition: all .5s ease-in;
 }
 #popup h1 {
@@ -163,7 +161,7 @@ a:hover {
 }
 #popup.hide {
 	background: rgba(0,0,0,0);
-	visibility: hidden;		
+	visibility: hidden;
 }
 #popup.hide #popup-box{
 	margin-top: -800px;
