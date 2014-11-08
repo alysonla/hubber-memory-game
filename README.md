@@ -17,6 +17,10 @@ Hosted using [GitHub Pages.](https://pages.github.com/)
 - Make your awesome changes in your topic branch.
 - Send a pull request from your branch to this repository.
 
+### Running locally
+
+Just open the index.html file in a browser. No frameworks needed. :grin:
+
 ## TODO
 
 - [ ] Figure out how to use the GitHub API to automatically pull in new GitHub staff members

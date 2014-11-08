@@ -22,7 +22,7 @@ a:hover {
 }
 
 #game {
-		display: -webkit-box;
+	display: -webkit-box;
 	-webkit-box-pack: center;
 	-webkit-box-align: center;
 
@@ -42,6 +42,10 @@ a:hover {
 	-webkit-perspective: 600;
 	width: 128px;
 	height: 128px;
+	border-radius: 10px;
+	overflow: hidden;
+
+
 
 	/* changed	*/
 	position: absolute;
@@ -52,7 +56,6 @@ a:hover {
 }
 
 .face {
-	border-radius: 10px;
 	width: 100%;
 	height: 100%;
 	position: absolute;
