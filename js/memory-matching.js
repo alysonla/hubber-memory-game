@@ -1,11 +1,12 @@
 var matchingGame = {
-	elapsedTime: 0
+    elapsedTime: 0
+  , github: new GitHub()
 };
 
 matchingGame.deck = []
 
 function getHubbers(callback) {
-    new GitHub().get("orgs/github/members", { all: true }, function (err, data) {
+   matchingGame.github.get("orgs/github/members", { all: true }, function (err, data) {
         if (err) {
             console.warn(err);
             data = window.Hubbers;
@@ -111,34 +112,48 @@ function countTimer() {
 }
 
 $(function(){
-        getHubbers(function (err, hubbers) {
-            shuffleHubbers(hubbers);
-            matchingGame.deck.sort(shuffle);
-            for(var i=0;i<15;i++){
-                    $('.card:first-child').clone().appendTo('#cards');
-            }
-            $('#cards').children().each(function(index) {
-                    $(this).css({
-                            'left': ($(this).width() + 15) * (index % 4),
-                            'top': ($(this).height() + 15) * Math.floor(index / 4)
-                    });
-
-                    var Hubber = matchingGame.deck.pop();
-                    // This is some shit - we are going to dynamically apply css to the card(s).
-                    $(this)
-                            .css("background", "#efefef url(" + Hubber.avatar_url + ")")
-                            .css("background-size", "128px 128px")
-                    $(this).attr("data-pattern",Hubber.login);
-
-                    if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
-                            $(this).find(".name").text(Hubber.name);
-                    } else {
-                            $(this).find(".login").text(Hubber.login);
-                    }
-
-                    $(this).click(selectCard);
+    getHubbers(function (err, hubbers) {
+        shuffleHubbers(hubbers);
+        matchingGame.deck.sort(shuffle);
+        var $cards = $("#cards");
+        for(var i=0;i<15;i++){
+            $('.card:first-child').clone().appendTo($cards);
+        }
+        $('#cards').children().each(function(index) {
+            var $this = $(this);
+            $this.css({
+                'left': ($this.width() + 15) * (index % 4),
+                'top': ($this.height() + 15) * Math.floor(index / 4)
             });
-            matchingGame.timer = setInterval(countTimer, 1000);
+
+            var Hubber = matchingGame.deck.pop();
+
+            // This is some shit - we are going to dynamically apply css to the card(s).
+            $this
+                .css("background", "#efefef url(" + Hubber.avatar_url + ")")
+                .css("background-size", "128px 128px")
+
+            $this.attr("data-pattern",Hubber.login);
+
+            if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
+                if (Hubber.name) {
+                    $this.find(".name").text(Hubber.name);
+                } else {
+                    matchingGame.github.get("users/" + Hubber.login, function (err, data) {
+                        if (err || !data.name) {
+                            $this.find(".name").text(Hubber.login);
+                        } else {
+                            $this.find(".name").text(data.name);
+                        }
+                    });
+                }
+            } else {
+                $this.find(".login").text(Hubber.login);
+            }
+
+            $this.click(selectCard);
         });
+        matchingGame.timer = setInterval(countTimer, 1000);
+    });
 });
 
