@@ -1,19 +1,27 @@
-
-
 var matchingGame = {
 	elapsedTime: 0
 };
 
 matchingGame.deck = []
 
-// Like this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+function getHubbers(callback) {
+    new GitHub().get("orgs/github/members", { all: true }, function (err, data) {
+        if (err) {
+            console.warn(err);
+            data = window.Hubbers;
+        } else {
+            callback(null, data);
+        }
+    });
+}
 
-Hubbers["hubbers"].sort(shuffle).slice(0,8).map(function(hubber){
-	matchingGame.deck.push(hubber)
-	matchingGame.deck.push(hubber)
-});
-
-console.log(matchingGame.deck)
+function shuffleHubbers(hubbers) {
+    // Like this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+    hubbers.hubbers.sort(shuffle).slice(0,8).map(function(hubber){
+            matchingGame.deck.push(hubber)
+            matchingGame.deck.push(hubber)
+    });
+}
 
 function shuffle() {
 	return 0.5 - Math.random();
@@ -107,31 +115,34 @@ function countTimer() {
 // Also is this all JQuery, I know this b/c of the $
 
 $(function(){
-	matchingGame.deck.sort(shuffle);
-	for(var i=0;i<15;i++){
-		$('.card:first-child').clone().appendTo('#cards');
-	}
-	$('#cards').children().each(function(index) {
-		$(this).css({
-			'left': ($(this).width() + 15) * (index % 4),
-			'top': ($(this).height() + 15) * Math.floor(index / 4)
-		});
+        getHubbers(function (err, hubbers) {
+            shuffleHubbers(hubbers);
+            matchingGame.deck.sort(shuffle);
+            for(var i=0;i<15;i++){
+                    $('.card:first-child').clone().appendTo('#cards');
+            }
+            $('#cards').children().each(function(index) {
+                    $(this).css({
+                            'left': ($(this).width() + 15) * (index % 4),
+                            'top': ($(this).height() + 15) * Math.floor(index / 4)
+                    });
 
-		var Hubber = matchingGame.deck.pop();
-		// This is some shit - we are going to dynamically apply css to the card(s).
-		$(this)
-			.css("background", "#efefef url(" + Hubber.avatar + ")")
-			.css("background-size", "128px 128px")
-		$(this).attr("data-pattern",Hubber.login);
+                    var Hubber = matchingGame.deck.pop();
+                    // This is some shit - we are going to dynamically apply css to the card(s).
+                    $(this)
+                            .css("background", "#efefef url(" + Hubber.avatar + ")")
+                            .css("background-size", "128px 128px")
+                    $(this).attr("data-pattern",Hubber.login);
 
-		if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
-			$(this).find(".name").text(Hubber.name);
-		} else {
-			$(this).find(".login").text(Hubber.login);
-		}
+                    if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
+                            $(this).find(".name").text(Hubber.name);
+                    } else {
+                            $(this).find(".login").text(Hubber.login);
+                    }
 
-		$(this).click(selectCard);
-	});
-	matchingGame.timer = setInterval(countTimer, 1000);
+                    $(this).click(selectCard);
+            });
+            matchingGame.timer = setInterval(countTimer, 1000);
+        });
 });
 
