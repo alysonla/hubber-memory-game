@@ -11,9 +11,7 @@ function getHubbers(callback) {
             console.warn(err);
             data = window.Hubbers;
         }
-        setTimeout(function() {
         callback(null, { hubbers: data });
-        }, 1000);
     });
 }
 
