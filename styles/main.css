@@ -36,6 +36,7 @@ a:hover {
 	position: relative;
 	width: 557px;
 	height: 557px;
+	display: none;
 }
 
 .card {

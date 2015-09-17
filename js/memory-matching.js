@@ -11,7 +11,9 @@ function getHubbers(callback) {
             console.warn(err);
             data = window.Hubbers;
         }
+        setTimeout(function() {
         callback(null, { hubbers: data });
+        }, 1000);
     });
 }
 
@@ -112,14 +114,15 @@ function countTimer() {
 }
 
 $(function(){
+    var $cards = $("#cards");
+    $cards.hide();
     getHubbers(function (err, hubbers) {
         shuffleHubbers(hubbers);
         matchingGame.deck.sort(shuffle);
-        var $cards = $("#cards");
         for(var i=0;i<15;i++){
             $('.card:first-child').clone().appendTo($cards);
         }
-        $('#cards').children().each(function(index) {
+        $cards.children().each(function(index) {
             var $this = $(this);
             $this.css({
                 'left': ($this.width() + 15) * (index % 4),
@@ -153,6 +156,7 @@ $(function(){
 
             $this.click(selectCard);
         });
+        $cards.fadeIn();
         matchingGame.timer = setInterval(countTimer, 1000);
     });
 });
