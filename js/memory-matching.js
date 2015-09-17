@@ -9,9 +9,8 @@ function getHubbers(callback) {
         if (err) {
             console.warn(err);
             data = window.Hubbers;
-        } else {
-            callback(null, data);
         }
+        callback(null, { hubbers: data });
     });
 }
 
@@ -111,9 +110,6 @@ function countTimer() {
 	$("#elapsed-time").html(minute+":"+second);
 }
 
-// This function is going to auto-update the website with new hubbers per the team api (when we get crosssite request working).
-// Also is this all JQuery, I know this b/c of the $
-
 $(function(){
         getHubbers(function (err, hubbers) {
             shuffleHubbers(hubbers);
@@ -130,7 +126,7 @@ $(function(){
                     var Hubber = matchingGame.deck.pop();
                     // This is some shit - we are going to dynamically apply css to the card(s).
                     $(this)
-                            .css("background", "#efefef url(" + Hubber.avatar + ")")
+                            .css("background", "#efefef url(" + Hubber.avatar_url + ")")
                             .css("background-size", "128px 128px")
                     $(this).attr("data-pattern",Hubber.login);
 
