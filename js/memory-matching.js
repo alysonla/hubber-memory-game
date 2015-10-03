@@ -147,7 +147,10 @@ function countTimer() {
 }
 
 $(function(){
+
     var $cards = $("#cards");
+    var $loader = $("#loader");
+
     $cards.hide();
     getHubbers(function (hubbers) {
         for (var i = 0; i < hubbers.hubbers.length; ++i) {
@@ -182,6 +185,7 @@ $(function(){
             $this.click(selectCard);
         });
         $cards.fadeIn();
+        $loader.fadeOut();
         matchingGame.timer = setInterval(countTimer, 1000);
     });
 });

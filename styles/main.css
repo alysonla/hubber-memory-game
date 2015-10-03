@@ -1,3 +1,5 @@
+@import url("three-quarters.css");
+
 body {
     text-align: center;
     font-family: 'Sansita One';
@@ -203,4 +205,11 @@ a:hover {
     border-width: 6px;
     border-color: transparent #882011 transparent transparent;
     z-index: -1;
+}
+
+div#loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 320px;
 }
