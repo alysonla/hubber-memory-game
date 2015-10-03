@@ -33,16 +33,28 @@ function getHubbers(callback) {
     });
 }
 
-function shuffleHubbers(hubbers) {
-    // Like this https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-    hubbers.hubbers.sort(shuffle).slice(0,8).map(function(hubber){
-            matchingGame.deck.push(hubber)
-            matchingGame.deck.push(hubber)
-    });
+// http://stackoverflow.com/a/2450976/1420197
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex ;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
 }
 
-function shuffle() {
-	return 0.5 - Math.random();
+function shuffleHubbers(hubbers) {
+    matchingGame.deck = shuffle(hubbers.hubbers);
 }
 
 function selectCard() {
@@ -134,7 +146,6 @@ $(function(){
     $cards.hide();
     getHubbers(function (err, hubbers) {
         shuffleHubbers(hubbers);
-        matchingGame.deck.sort(shuffle);
         for(var i=0;i<15;i++){
             $('.card:first-child').clone().appendTo($cards);
         }
