@@ -9,9 +9,27 @@ function getHubbers(callback) {
    matchingGame.github.get("orgs/github/members", { all: true }, function (err, data) {
         if (err) {
             console.warn(err);
-            data = window.Hubbers;
+            callback(null, { hubbers: window.Hubbers });
+        } else {
+            var complete = 0;
+            for (var i = 0; i < data.length; ++i) {
+                (function (cHubber) {
+                    matchingGame.github.get("users/" + cHubber.login, function (err, user) {
+                        if (err) {
+                            console.warn(err);
+                            if (++complete === data.length) {
+                                callback(null, { hubbers: window.Hubbers });
+                            }
+                        } else {
+                            cHubber.name = user.name;
+                            if (++complete === data.length) {
+                                callback(null, { hubbers: data });
+                            }
+                        }
+                    });
+                })(data[i]);
+            }
         }
-        callback(null, { hubbers: data });
     });
 }
 
@@ -136,18 +154,8 @@ $(function(){
 
             $this.attr("data-pattern",Hubber.login);
 
-            if ($("[data-pattern="+Hubber.login+"] .name").text() == "") {
-                if (Hubber.name) {
-                    $this.find(".name").text(Hubber.name);
-                } else {
-                    matchingGame.github.get("users/" + Hubber.login, function (err, data) {
-                        if (err || !data.name) {
-                            $this.find(".name").text(Hubber.login);
-                        } else {
-                            $this.find(".name").text(data.name);
-                        }
-                    });
-                }
+            if ($("[data-pattern="+Hubber.login+"] .name").text() == "" && Hubber.name) {
+                $this.find(".name").text(Hubber.name);
             } else {
                 $this.find(".login").text(Hubber.login);
             }
@@ -158,4 +166,3 @@ $(function(){
         matchingGame.timer = setInterval(countTimer, 1000);
     });
 });
-
