@@ -6,30 +6,39 @@ var matchingGame = {
 matchingGame.deck = []
 
 function getHubbers(callback) {
-   matchingGame.github.get("orgs/github/members", { all: true }, function (err, data) {
+    function done (err, hubbers) {
+        hubbers = shuffle(hubbers).slice(0, 8);
+
+        if (err) {
+            return callback({ hubbers: hubbers });
+        }
+
+        var complete = 0;
+        for (var i = 0; i < hubbers.length; ++i) {
+            (function (cHubber) {
+                matchingGame.github.get("users/" + cHubber.login, function (err, user) {
+                    if (err) {
+                        console.warn(err);
+                        if (++complete === hubbers.length) {
+                            done(err, window.Hubbers);
+                        }
+                    } else {
+                        cHubber.name = user.name;
+                        if (++complete === hubbers.length) {
+                            callback({ hubbers: hubbers });
+                        }
+                    }
+                });
+            })(hubbers[i]);
+        }
+    }
+
+    matchingGame.github.get("orgs/github/members", { all: true }, function (err, data) {
         if (err) {
             console.warn(err);
-            callback(null, { hubbers: window.Hubbers });
-        } else {
-            var complete = 0;
-            for (var i = 0; i < data.length; ++i) {
-                (function (cHubber) {
-                    matchingGame.github.get("users/" + cHubber.login, function (err, user) {
-                        if (err) {
-                            console.warn(err);
-                            if (++complete === data.length) {
-                                callback(null, { hubbers: window.Hubbers });
-                            }
-                        } else {
-                            cHubber.name = user.name;
-                            if (++complete === data.length) {
-                                callback(null, { hubbers: data });
-                            }
-                        }
-                    });
-                })(data[i]);
-            }
+            data = window.Hubbers;
         }
+        done(err, data);
     });
 }
 
@@ -51,10 +60,6 @@ function shuffle(array) {
     }
 
     return array;
-}
-
-function shuffleHubbers(hubbers) {
-    matchingGame.deck = shuffle(hubbers.hubbers);
 }
 
 function selectCard() {
@@ -144,8 +149,11 @@ function countTimer() {
 $(function(){
     var $cards = $("#cards");
     $cards.hide();
-    getHubbers(function (err, hubbers) {
-        shuffleHubbers(hubbers);
+    getHubbers(function (hubbers) {
+        for (var i = 0; i < hubbers.hubbers.length; ++i) {
+            matchingGame.deck.push(hubbers.hubbers[i], hubbers.hubbers[i]);
+        }
+        shuffle(matchingGame.deck);
         for(var i=0;i<15;i++){
             $('.card:first-child').clone().appendTo($cards);
         }
