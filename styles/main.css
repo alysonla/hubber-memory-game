@@ -1,205 +1,215 @@
+@import url("three-quarters.css");
+
 body {
-	text-align: center;
-	font-family: 'Sansita One';
-	background: #a46740 url(../images/table.jpg);
-	color: #ccc;
-	text-shadow: 0 1px 0 #222;
+    text-align: center;
+    font-family: 'Sansita One';
+    background: #a46740 url(../images/table.jpg);
+    color: #ccc;
+    text-shadow: 0 1px 0 #222;
 }
 h1 {
-	font-weight: bold;
-	text-shadow: 0 2px 0 #222;
+    font-weight: bold;
+    text-shadow: 0 2px 0 #222;
 }
 a, a:visited {
-	color: #aea;
-	text-decoration: none;	22
-	-webkit-transition: all .3s;
-	padding: 5px;
+    color: #aea;
+    text-decoration: none;	22
+    -webkit-transition: all .3s;
+    padding: 5px;
 }
 a:hover {
-	color: #000;
-	background: #aea;
-	text-shadow: none;
+    color: #000;
+    background: #aea;
+    text-shadow: none;
 }
 
 #game {
-	display: -webkit-box;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
 
-	display: -moz-box;
-	-moz-box-pack: center;
-	-moz-box-align: center;
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
 }
 
 #cards {
-	margin-top: 15px;
-	position: relative;
-	width: 557px;
-	height: 557px;
+    margin-top: 15px;
+    position: relative;
+    width: 557px;
+    height: 557px;
+    display: none;
 }
 
 .card {
-	-webkit-perspective: 600;
-	width: 128px;
-	height: 128px;
-	border-radius: 10px;
-	overflow: hidden;
+    -webkit-perspective: 600;
+    width: 128px;
+    height: 128px;
+    border-radius: 10px;
+    overflow: hidden;
 
 
 
-	/* changed	*/
-	position: absolute;
+    /* changed	*/
+    position: absolute;
 
-	-moz-transition: all .3s;
-	-webkit-transition: all .3s;
-	transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    transition: all .3s;
 }
 
 .face {
-	width: 100%;
-	height: 100%;
-	position: absolute;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 
-	-moz-transition-property: opacity, -moz-transform, -moz-box-shadow;
-	-moz-transition-duration: .3s;
-	-webkit-transition-property: opacity, -webkit-transform, -webkit-box-shadow;
-	-webkit-transition-duration: .3s;
-	transition-property: opacity, transform, box-shadow;
-	transition-duration: .3s;
+    -moz-transition-property: opacity, -moz-transform, -moz-box-shadow;
+    -moz-transition-duration: .3s;
+    -webkit-transition-property: opacity, -webkit-transform, -webkit-box-shadow;
+    -webkit-transition-duration: .3s;
+    transition-property: opacity, transform, box-shadow;
+    transition-duration: .3s;
 
-	-moz-backface-visibility: hidden;
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 
 }
 
 .front {
-	background: #FFF url(../images/mark.png) no-repeat;
-	z-index: 10;
+    background: #FFF url(../images/mark.png) no-repeat;
+    z-index: 10;
 }
 
 .back {
 
 
-	-moz-transform: rotate3d(0,1,0,-180deg);
-	-webkit-transform: rotate3d(0,1,0,-180deg);
-	transform: rotate3d(0,1,0,-180deg);
+    -moz-transform: rotate3d(0,1,0,-180deg);
+    -webkit-transform: rotate3d(0,1,0,-180deg);
+    transform: rotate3d(0,1,0,-180deg);
 
-	z-index: 8;
+    z-index: 8;
 }
 
 .back .name, .back .login {
-	position: absolute;
-	bottom: 5px;
-	left: 0;
-	right: 0;
-	display: block;
-	color: #FFF;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    display: block;
+    color: #FFF;
 }
 
 .card:hover .face{
-	-webkit-box-shadow: 0 0 20px #aaa;
-	box-shadow: 0 0 10px #aaa;
+    -webkit-box-shadow: 0 0 20px #aaa;
+    box-shadow: 0 0 10px #aaa;
 }
 .card-flipped .face{
-	-webkit-box-shadow: 0 0 20px #aaa;
-	box-shadow: 0 0 10px #aaa;
+    -webkit-box-shadow: 0 0 20px #aaa;
+    box-shadow: 0 0 10px #aaa;
 }
 .card-flipped .front {
-	-moz-transform: rotate3d(0,1,0,180deg);
-	-webkit-transform: rotate3d(0,1,0,180deg);
-	transform: rotate3d(0,1,0,180deg);
+    -moz-transform: rotate3d(0,1,0,180deg);
+    -webkit-transform: rotate3d(0,1,0,180deg);
+    transform: rotate3d(0,1,0,180deg);
 
-	/* ensure the front face is below the back face */
-	z-index: 8;
+    /* ensure the front face is below the back face */
+    z-index: 8;
 }
 
 .card-flipped .back {
-	-moz-transform: rotate3d(0,1,0,0deg);
-	-webkit-transform: rotate3d(0,1,0,0deg);
-	transform: rotate3d(0,1,0,0deg);
+    -moz-transform: rotate3d(0,1,0,0deg);
+    -webkit-transform: rotate3d(0,1,0,0deg);
+    transform: rotate3d(0,1,0,0deg);
 
-	/* ensure the back face is on top of the front face */
-	z-index: 10;
+    /* ensure the back face is on top of the front face */
+    z-index: 10;
 }
 
 .card-removed {
-	opacity: 0;
+    opacity: 0;
 }
 
 #popup {
-	font-family: 'Orbitron', serif;
-	font-size: 28px;
-	font-weight: 700;
-	text-shadow: 0px 1px 2px #fff;
-	color: #222;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background: rgba(0,0,0,.5);
-	display: -webkit-box;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
-	-webkit-transition: all .5s ease-in;
+    font-family: 'Orbitron', serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0px 1px 2px #fff;
+    color: #222;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-transition: all .5s ease-in;
 }
 #popup h1 {
-	font-weight: 400;
+    font-weight: 400;
 }
 #popup-box {
-	position: relative;
-	width: 400px;
-	height: 300px;
-	background: #ccc;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 5px 5px #333;
-	display: -webkit-box;
-	-webkit-box-pack: center;
-	-webkit-box-align: center;
-	-webkit-transition: all .5s ease-in;
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background: #ccc;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 5px 5px #333;
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    -webkit-transition: all .5s ease-in;
 }
 #popup-box small {
-	font-size: .6em;
+    font-size: .6em;
 }
 #popup.hide {
-	background: rgba(0,0,0,0);
-	visibility: hidden;
+    background: rgba(0,0,0,0);
+    visibility: hidden;
 }
 #popup.hide #popup-box{
-	margin-top: -800px;
+    margin-top: -800px;
 }
 .ribbon.hide {
-	display: none;
+    display: none;
 }
 .ribbon {
-	float: left;
-	position: absolute;
-	left: -7px;
-	top: 165px;
-	z-index: 0;
-	font-size: .5em;
-	text-transform: uppercase;
-	text-align: right;
+    float: left;
+    position: absolute;
+    left: -7px;
+    top: 165px;
+    z-index: 0;
+    font-size: .5em;
+    text-transform: uppercase;
+    text-align: right;
 }
 .ribbon-body {
-	height: 14px;
-	background: #ca3d33;
-	padding: 6px;
-	z-index: 100;
-	-webkit-box-shadow: 2px 2px 0 rgba(150,120,70,.4);
-	border-radius: 0 5px 5px 0;
-	color: #fff;
-	text-shadow: 0px 1px 1px rgba(0,0,0,.3);
+    height: 14px;
+    background: #ca3d33;
+    padding: 6px;
+    z-index: 100;
+    -webkit-box-shadow: 2px 2px 0 rgba(150,120,70,.4);
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    text-shadow: 0px 1px 1px rgba(0,0,0,.3);
 }
 .triangle{
-	position: relative;
-	height: 0px;
-	width: 0;
-	left: -5px;
-	top: -32px;
-	border-style: solid;
-	border-width: 6px;
-	border-color: transparent #882011 transparent transparent;
-	z-index: -1;
+    position: relative;
+    height: 0px;
+    width: 0;
+    left: -5px;
+    top: -32px;
+    border-style: solid;
+    border-width: 6px;
+    border-color: transparent #882011 transparent transparent;
+    z-index: -1;
+}
+
+div#loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 320px;
 }
