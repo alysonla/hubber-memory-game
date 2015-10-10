@@ -1,0 +1,30 @@
+{
+  "name": "hubber-memory-game",
+  "version": "1.0.0",
+  "description": "The classic memory game, with your favorite hubbers",
+  "main": "build.js",
+  "dependencies": {
+    "bug-killer": "^4.0.0",
+    "same-time": "^2.0.0",
+    "gh.js": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alysonla/hubber-memory-game.git"
+  },
+  "keywords": [
+    "hubbers",
+    "github",
+    "memory",
+    "game"
+  ],
+  "author": "Alyson La <alyson@github.com>",
+  "bugs": {
+    "url": "https://github.com/alysonla/hubber-memory-game/issues"
+  },
+  "homepage": "https://github.com/alysonla/hubber-memory-game#readme"
+}
