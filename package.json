@@ -23,6 +23,11 @@
     "game"
   ],
   "author": "Alyson La <alyson@github.com>",
+  "contributors": [
+    "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)",
+    "Alex Rodas (http://alexrodas.com/)",
+    "Joel Glovier (http://joelglovier.com/)"
+  ],
   "bugs": {
     "url": "https://github.com/alysonla/hubber-memory-game/issues"
   },
