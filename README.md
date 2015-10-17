@@ -2,7 +2,7 @@
 
 The classic memory game, with your favorite hubbers
 
-[![](http://i.imgur.com/KLl5oEO.jpg)](http://alysonla.github.io/hubber-memory-game/)
+[![](http://i.imgur.com/KLl5oEO.jpg)](https://alysonla.github.io/hubber-memory-game/)
 
 ## Resources
 
@@ -26,7 +26,7 @@ Just open the index.html file in a browser. No frameworks needed. :grin:
 The [`js/Hubbers.js`](/js/Hubbers.js) file contains a list with all the public members in the [GitHub](https://github.com/github) organization.
 It contains minimal information which is needed and used when the public API request rate limit exceeds.
 
-This file can be updated automatically using the [`build.js`](/build.js) script and a [token](https://github.com/settings/tokens):
+This file is updated automatically using the [`build.js`](/build.js) script and a [token](https://github.com/settings/tokens):
 
 ```sh
 $ npm i
