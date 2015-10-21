@@ -1,14 +1,14 @@
 ## Hubber Memory Game
 
-A simple CSS/HTML/JavaScript matching game
+The classic memory game, with your favorite hubbers
 
-![screen shot 2014-10-10 at 2 58 52 pm](https://cloud.githubusercontent.com/assets/2623954/4599625/c2f53220-50c8-11e4-9b34-390065cfab00.png)
+[![](http://i.imgur.com/KLl5oEO.jpg)](https://alysonla.github.io/hubber-memory-game/)
 
 ## Resources
 
 Tutorial using [HTML5 Games development by Example: Beginners Guide](http://www.amazon.com/gp/product/B005KRUHXI/ref=kinw_myk_ro_title#).
 
-Hosted using [GitHub Pages.](https://pages.github.com/)
+Hosted using [GitHub Pages](https://pages.github.com/).
 
 ## Contributing
 
@@ -21,6 +21,14 @@ Hosted using [GitHub Pages.](https://pages.github.com/)
 
 Just open the index.html file in a browser. No frameworks needed. :grin:
 
-## TODO
+### Rebuilding the GitHubbers list
 
-- [ ] Figure out how to use the GitHub API to automatically pull in new GitHub staff members
+The [`js/Hubbers.js`](/js/Hubbers.js) file contains a list with all the public members in the [GitHub](https://github.com/github) organization.
+It contains minimal information which is needed and used when the public API request rate limit exceeds.
+
+This file is updated automatically using the [`build.js`](/build.js) script and a [token](https://github.com/settings/tokens):
+
+```sh
+$ npm i
+$ node build.js <token>
+```
