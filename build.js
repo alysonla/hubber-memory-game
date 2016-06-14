@@ -36,7 +36,9 @@ gh.get("orgs/github/members", { all: true }, function (err, data) {
     sameTime(data.map(function (c) {
         return function (next) {
             gh.get("users/" + c.login, function (err, data) {
-                if (data.name) {
+                if (err) {
+                    Logger.log("Failed to fetch the name for @" + data.login);
+                } else if (data.name) {
                     Logger.log("Fetched name: " + data.name + " (@" + data.login + ")");
                 }
                 next(err, data);
