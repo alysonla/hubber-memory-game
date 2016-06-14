@@ -4,9 +4,11 @@
   "description": "The classic memory game, with your favorite hubbers",
   "main": "build.js",
   "dependencies": {
+    "abs": "^1.3.4",
     "bug-killer": "^4.0.0",
-    "same-time": "^2.0.0",
-    "gh.js": "^2.2.0"
+    "gh.js": "^2.2.0",
+    "r-json": "^1.2.3",
+    "same-time": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {

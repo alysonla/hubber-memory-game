@@ -1,14 +1,21 @@
 // Dependencies
 var GitHub = require("gh.js")
-  , SameTime = require("same-time")
+  , sameTime = require("same-time")
   , Logger = require("bug-killer")
-  , Fs = require("fs")
+  , fs = require("fs")
+  , readJson = require("r-json")
+  , abs = require("abs")
   ;
 
 // A token is almost mandatory
 if (!process.argv[2]) {
-    Logger.log("Usage: node build.js <token>", "warn");
-    Logger.log("If a token is not provided, this script will fail due to the API rate limit.", "warn");
+    try {
+        process.argv[2] = readJson(abs("~/.github-config.json"));
+        Logger.log("Using the token found in ~/.github-config.json");
+    } catch (e) {
+        Logger.log("Usage: node build.js <token>", "warn");
+        Logger.log("If a token is not provided, this script will fail due to the API rate limit.", "warn");
+    }
 }
 
 // Initialize the gh.js instance
@@ -23,7 +30,7 @@ gh.get("orgs/github/members", { all: true }, function (err, data) {
 
     // Get names
     Logger.log("Fetching the names.");
-    SameTime(data.map(function (c) {
+    sameTime(data.map(function (c) {
         return function (next) {
             gh.get("users/" + c.login, function (err, data) {
                 if (data.name) {
@@ -47,7 +54,7 @@ gh.get("orgs/github/members", { all: true }, function (err, data) {
         });
 
         // Write to file
-        Fs.writeFile("js/Hubbers.js", "var Hubbers = " + JSON.stringify(data), function (err) {
+        fs.writeFile("js/Hubbers.js", "var Hubbers = " + JSON.stringify(data), function (err) {
             if (err) {
                 return Logger.log(err, "error");
             }
