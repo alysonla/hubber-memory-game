@@ -7,10 +7,13 @@ var GitHub = require("gh.js")
   , abs = require("abs")
   ;
 
+
+var token = process.argv[2];
+
 // A token is almost mandatory
-if (!process.argv[2]) {
+if (!token) {
     try {
-        process.argv[2] = readJson(abs("~/.github-config.json"));
+        token = readJson(abs("~/.github-config.json")).token;
         Logger.log("Using the token found in ~/.github-config.json");
     } catch (e) {
         Logger.log("Usage: node build.js <token>", "warn");
@@ -19,7 +22,7 @@ if (!process.argv[2]) {
 }
 
 // Initialize the gh.js instance
-var gh = new GitHub({ token: process.argv[2] });
+var gh = new GitHub(token);
 
 // Fetch GitHub members
 Logger.log("Fetching the GitHub members.");
